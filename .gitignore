@@ -1,6 +1,10 @@
+Backend/src/main/resources/application-dev.properties
+
 HELP.md
 target/
 Backend/.mvn/
+Backend/mvnw
+Backend/mvnw.cmd
 !**/src/main/**/target/
 !**/src/test/**/target/
 
