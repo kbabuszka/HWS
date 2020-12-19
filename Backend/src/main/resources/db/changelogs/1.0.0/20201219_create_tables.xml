@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet  author="kbabuszka"  id="20201213_create_tables">
+
+        <createTable  tableName="user_roles">
+            <column  name="id"
+                     type="INT"
+                     autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column  name="name"
+                     type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="users">
+            <column  name="id"
+                     type="INT"
+                     autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column  name="username"
+                     type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column  name="email"
+                     type="VARCHAR(200)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column  name="password"
+                     type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="role_id"
+                     type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="active"
+                     type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="stations">
+            <column  name="id"
+                     type="INT"
+                     autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column  name="name"
+                     type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="description"
+                     type="VARCHAR(255)"/>
+            <column  name="owner_id"
+                     type="INT"/>
+            <column  name="uuid"
+                     type="VARCHAR(16)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="unit_types">
+            <column  name="id"
+                     type="INT"
+                     autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column  name="type"
+                     type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="reading_units">
+            <column  name="id"
+                     type="INT"
+                     autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column  name="type_id"
+                     type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="unit"
+                     type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="readings">
+            <column  name="id"
+                     type="BIGINT"
+                     autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column  name="station_id"
+                     type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="unit_id"
+                     type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="value"
+                     type="FLOAT">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="timestamp"
+                     type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_users_user_roles"
+                                 baseTableName="users"
+                                 baseColumnNames="role_id"
+                                 referencedTableName="user_roles"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"
+                                 onDelete="RESTRICT"/>
+
+        <addForeignKeyConstraint constraintName="fk_stations_users"
+                                 baseTableName="stations"
+                                 baseColumnNames="owner_id"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"
+                                 onDelete="SET NULL"/>
+
+        <addForeignKeyConstraint constraintName="fk_reading_units_unit_types"
+                                 baseTableName="reading_units"
+                                 baseColumnNames="type_id"
+                                 referencedTableName="unit_types"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"
+                                 onDelete="RESTRICT"/>
+
+        <addForeignKeyConstraint constraintName="fk_readings_stations"
+                                 baseTableName="readings"
+                                 baseColumnNames="station_id"
+                                 referencedTableName="stations"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"
+                                 onDelete="CASCADE"/>
+
+        <addForeignKeyConstraint constraintName="fk_readings_reading_units"
+                                 baseTableName="readings"
+                                 baseColumnNames="unit_id"
+                                 referencedTableName="reading_units"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"
+                                 onDelete="RESTRICT"/>
+
+    </changeSet>
+</databaseChangeLog>
