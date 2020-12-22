@@ -73,7 +73,7 @@
                      autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column  name="type"
+            <column  name="name"
                      type="VARCHAR(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
@@ -89,7 +89,11 @@
                      type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column  name="unit"
+            <column  name="name"
+                     type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="symbol"
                      type="VARCHAR(5)">
                 <constraints nullable="false"/>
             </column>
