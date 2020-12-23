@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet  author="kbabuszka"  id="20201223_add_sample_data">
+
+        <insert tableName="user_roles">
+            <column name="id"  value="1"/>
+            <column name="name"  value="user"/>
+        </insert>
+        <insert tableName="user_roles">
+            <column name="id"  value="2"/>
+            <column name="name"  value="admin"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="id"  value="1"/>
+            <column name="username"  value="user"/>
+            <column name="email"  value="samplehwsuser@babuszka.net"/>
+            <column name="password"  value="$2a$10$rpDbPYal37UqAqpjqpgAhu4lJaqJQttbGBMW5ih.mzyUgIEKOnARi"/>
+            <column name="role_id"  value="1"/>
+            <column name="active"  valueBoolean="true"/>
+        </insert>
+        <insert tableName="users">
+            <column name="id"  value="2"/>
+            <column name="username"  value="admin"/>
+            <column name="email"  value="samplehwsadmin@babuszka.net"/>
+            <column name="password"  value="$2a$10$AymkY3cXkMElOp9Xgd6Y.eo.M6yxTjfk9KLALAvGS9QDA4/4jqXle"/>
+            <column name="role_id"  value="2"/>
+            <column name="active"  valueBoolean="true"/>
+        </insert>
+
+        <insert tableName="stations">
+            <column name="id"  value="1"/>
+            <column name="name"  value="Sample Weather Station"/>
+            <column name="description"  value="Sample Weather Station. It's added to present as sample data after first launch of the application"/>
+            <column name="owner_id"  value="1"/>
+            <column name="uuid"  value="ff4de4d9-b98d-4e45-8130-1aca5933c44a"/>
+        </insert>
+
+        <insert tableName="unit_types">
+            <column name="id"  value="1"/>
+            <column name="name"  value="temperature"/>
+        </insert>
+        <insert tableName="unit_types">
+            <column name="id"  value="2"/>
+            <column name="name"  value="humidity"/>
+        </insert>
+
+        <insert tableName="reading_units">
+            <column name="id"  value="1"/>
+            <column name="type_id"  value="1"/>
+            <column name="name"  value="Celsius"/>
+            <column name="symbol"  value="C"/>
+        </insert>
+        <insert tableName="reading_units">
+            <column name="id"  value="2"/>
+            <column name="type_id"  value="1"/>
+            <column name="name"  value="Fahrenheit"/>
+            <column name="symbol"  value="F"/>
+        </insert>
+        <insert tableName="reading_units">
+            <column name="id"  value="3"/>
+            <column name="type_id"  value="2"/>
+            <column name="name"  value="Percent"/>
+            <column name="symbol"  value="%"/>
+        </insert>
+
+        <insert tableName="readings">
+            <column name="id"  value="1"/>
+            <column name="station_id"  value="1"/>
+            <column name="unit_id"  value="1"/>
+            <column name="value"  value="10.0"/>
+            <column name="timestamp"  valueDate="2020-12-23 14:00:00.0"/>
+        </insert>
+        <insert tableName="readings">
+            <column name="id"  value="2"/>
+            <column name="station_id"  value="1"/>
+            <column name="unit_id"  value="1"/>
+            <column name="value"  value="10.0"/>
+            <column name="timestamp"  valueDate="2020-12-23 14:05:00.0"/>
+        </insert>
+        <insert tableName="readings">
+            <column name="id"  value="3"/>
+            <column name="station_id"  value="1"/>
+            <column name="unit_id"  value="1"/>
+            <column name="value"  value="10.0"/>
+            <column name="timestamp"  valueDate="2020-12-23 14:10:00.0"/>
+        </insert>
+        <insert tableName="readings">
+            <column name="id"  value="4"/>
+            <column name="station_id"  value="1"/>
+            <column name="unit_id"  value="1"/>
+            <column name="value"  value="10.0"/>
+            <column name="timestamp"  valueDate="2020-12-23 14:15:00.0"/>
+        </insert>
+        <insert tableName="readings">
+            <column name="id"  value="5"/>
+            <column name="station_id"  value="1"/>
+            <column name="unit_id"  value="1"/>
+            <column name="value"  value="10.0"/>
+            <column name="timestamp"  valueDate="2020-12-23 14:20:00.0"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
