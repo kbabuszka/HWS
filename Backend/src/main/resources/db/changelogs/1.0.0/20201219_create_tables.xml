@@ -62,7 +62,7 @@
             <column  name="owner_id"
                      type="INT"/>
             <column  name="uuid"
-                     type="VARCHAR(16)">
+                     type="VARCHAR(36)">
                 <constraints nullable="false" unique="true"/>
             </column>
         </createTable>
